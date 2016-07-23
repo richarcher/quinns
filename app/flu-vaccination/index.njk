@@ -2,6 +2,9 @@
 
 {% block content %}
 
+{% import 'macros/navigation.njk' as nav %}
+{{nav.active('flu')}}
+
     <div class="jumbotron">
       <div class="container">
         <h2>Flu vaccinations</h2>
