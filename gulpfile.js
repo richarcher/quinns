@@ -4,6 +4,7 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
 const del = require('del');
 const wiredep = require('wiredep').stream;
+const htmlhint = require("gulp-htmlhint");
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -45,8 +46,9 @@ gulp.task('lint', () => {
   return lint('app/scripts/**/*.js', {
     fix: true
   })
-    .pipe(gulp.dest('app/scripts'));
+  .pipe(gulp.dest('app/scripts'));
 });
+
 gulp.task('lint:test', () => {
   return lint('test/spec/**/*.js', {
     fix: true,
@@ -55,6 +57,12 @@ gulp.task('lint:test', () => {
     }
   })
     .pipe(gulp.dest('test/spec/**/*.js'));
+});
+
+gulp.task('htmlhint', ['views'], () => {
+  return gulp.src(['.tmp/**/*.html', 'dist/**/*.html'])
+  .pipe(htmlhint())
+  .pipe(htmlhint.failReporter())
 });
 
 gulp.task('html', ['views', 'styles', 'scripts'], () => {
@@ -183,14 +191,14 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('views', () => {
-  return gulp.src('app/**/*.njk')
+  return gulp.src(['app/**/*.njk', '!app/layouts/*', '!app/macros/*'])
   .pipe($.nunjucksRender({
       path: 'app'
     }))
     .pipe(gulp.dest('.tmp'))
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras', 'htmlhint'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
