@@ -1,0 +1,38 @@
+$icon-font-path: '../fonts/';
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.jumbotron {
+  padding-top: 70px;
+}
+
+footer p {
+  margin: 20px 0;
+}
+
+.home {
+  .services {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
