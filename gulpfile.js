@@ -9,6 +9,18 @@ const htmlhint = require("gulp-htmlhint");
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+const s3 = require( "gulp-s3" );
+const s3Credentials = {
+  "key":    "AKIAIR4DIEEZJPRRULIA",
+  "bucket": "quins",
+  "region": "us-east-1"
+};
+
+gulp.task('deploy', () => {
+  gulp.src( 'dist/**' )
+    .pipe( s3( s3Credentials ) );
+});
+
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.scss')
     .pipe($.plumber())
