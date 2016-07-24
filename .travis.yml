@@ -1,9 +1,21 @@
 language: node_js
 node_js:
-  - "6"
-  - "6.1"
-  - "5.11"
-
+- '6'
+- '6.1'
+- '5.11'
 before_script:
-  - npm install -g gulp
+- npm install -g gulp
 script: gulp
+deploy:
+  provider: s3
+  access_key_id: AKIAIR4DIEEZJPRRULIA
+  secret_access_key:
+    secure: mneRsDjvlM5HZEwIO12X4MXcGaMoezug8JP/zT1jOfG2xegFPyo5bY18ZuoTOgZcFAm2WAib20FqO5g/q96DbGDurIDDPwvJeqc6LxjDXo74kcSatpYa9LsJ3EG2270fhzwYRA8iOp2Co44XulcIWom2Vw7zYU4xwui23N7aPM+JcIxrfDEGZEwL+53noI56CenpCLIbRvaTw1S+XLq1Xqkjlt8bs0rWPV4dSdvrCIzDYJ+NOZehpnFx+QTKiqS8jfPDrPVbngWUzT5UMvst5h1ya/e5CU0kUon74Wb83+kcgqvtYx6RSlKKdczGK6X5/s5nrQcCtaw4QO9S3/Id0RLN1dg4zZA9VprjMxiart4MA0GcoxPgwzioSSEmTALFmwd+LColctNh/AYgPLWowaZ2uTcYKYURwJV5NMTBwM7ToWEAa4CQC2rv+8yVVqGNQYv0orLHTBWgAIy7Z8junVADn49LEnd6w2aMjzqvtL6e3rzaJ8dCkWXBLzt5As8p4Pc/Yo/FRDPIuVZEoRDhSzzM5SicaTSSqQ/FmbUOGZ0qzOyi63+25AWPVpbcdAocFRfTWoey/dRJIKspGsP/aqRntUIjfhR4E6BAnGSohD8mdAfixqiOaBrrGO0nxjsiknVR8LtiqrcjbxRFtiyjLn4grqNXin83AoRygZJvs/Y=
+  bucket: quins
+  local-dir: dist
+  acl: public_read
+  skip_cleanup: true
+  detect_encoding: true
+  default_text_charset: utf-8
+  on:
+    repo: richarcher/quinns
