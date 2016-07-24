@@ -3,8 +3,11 @@ node_js:
 - '6'
 - '6.1'
 - '5.11'
-before_script:
+install:
 - npm install -g gulp
+- npm install -g bower
+- npm install
+- bower install
 script: gulp
 deploy:
   provider: s3
